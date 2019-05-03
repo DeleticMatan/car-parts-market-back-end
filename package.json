@@ -1,0 +1,50 @@
+{
+  "name": "MyApp",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "node dist/index.js",
+    "heroku-postbuild": "babel src --out-dir dist --copy-files",
+    "dev": "env-cmd ./config/dev.env nodemon src/index.js --ext js,graphql --exec babel-node",
+    "dev-prod": "env-cmd ./config/prod.env nodemon src/index.js --ext js,graphql --exec babel-node",
+    "test": "env-cmd ./config/test.env jest --watch",
+    "get-schema": "graphql get-schema -p prisma --dotenv config/prod.env"
+  },
+  "jest": {
+    "globalSetup": "./tests/jest/globalSetup",
+    "globalTeardown": "./tests/jest/globalTeardown"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@2fd/graphdoc": "^2.4.0",
+    "@babel/polyfill": "^7.2.5",
+    "apollo-boost": "^0.1.22",
+    "bcryptjs": "^2.4.3",
+    "body-parser": "^1.18.3",
+    "cloudinary": "^1.13.2",
+    "cross-fetch": "^3.0.0",
+    "env-cmd": "^8.0.2",
+    "graphql": "0.13.2",
+    "graphql-yoga": "^1.14.10",
+    "jsonwebtoken": "^8.4.0",
+    "multer": "^1.4.1",
+    "nodemailer": "^5.1.1",
+    "prisma-binding": "^2.2.8"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.2.3",
+    "@babel/core": "^7.3.4",
+    "@babel/node": "^7.2.2",
+    "@babel/plugin-transform-spread": "^7.2.2",
+    "@babel/preset-env": "^7.3.4",
+    "@babel/register": "^7.0.0",
+    "jest": "^23.6.0",
+    "nodemon": "^1.18.7"
+  },
+  "graphdoc": {
+    "endpoint": "http://localhost:4000",
+    "output": "./doc/schema"
+  }
+}

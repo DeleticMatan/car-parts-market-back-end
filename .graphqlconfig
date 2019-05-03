@@ -1,0 +1,13 @@
+{
+  "projects": {
+      "prisma": {
+          "schemaPath": "src/generated/prisma.graphql",
+          "extensions": {
+              "prisma": "prisma/prisma.yml",
+              "endpoints": {
+                  "default": "https://auto-delovi-prisma-20df95421a.herokuapp.com/auto-delovi/prod"
+              }
+          }
+      }
+  }
+}

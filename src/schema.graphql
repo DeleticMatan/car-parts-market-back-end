@@ -1,0 +1,391 @@
+# import AdConnection, RimConnection, TireConnection, UserOrderByInput, UserWhereInput, AdOrderByInput, AdWhereInput, RimOrderByInput, RimWhereInput, TireOrderByInput, TireWhereInput, MutationType from './generated/prisma.graphql'
+
+scalar Upload
+
+type Query {
+  users(
+    where: UserWhereInput
+    first: Int
+    skip: Int
+    after: String
+    orderBy: UserOrderByInput
+  ): [User!]!
+  me: User!
+  ads(
+    where: AdWhereInput
+    first: Int
+    skip: Int
+    after: String
+    orderBy: AdOrderByInput
+  ): [Ad!]!
+  adsConnection(
+    where: AdWhereInput
+    first: Int
+    skip: Int
+    after: String
+    orderBy: AdOrderByInput
+  ): AdConnection!
+  myAds(
+    where: AdWhereInput
+    first: Int
+    skip: Int
+    after: String
+    orderBy: AdOrderByInput
+  ): [Ad!]!
+  rims(
+    where: RimWhereInput
+    first: Int
+    skip: Int
+    after: String
+    orderBy: RimOrderByInput
+  ): [Rim!]!
+  rimsConnection(
+    where: RimWhereInput
+    first: Int
+    skip: Int
+    after: String
+    orderBy: RimOrderByInput
+  ): RimConnection!
+  myRims(
+    where: RimWhereInput
+    first: Int
+    skip: Int
+    after: String
+    orderBy: RimOrderByInput
+  ): [Rim!]!
+  tires(
+    where: TireWhereInput
+    first: Int
+    skip: Int
+    after: String
+    orderBy: TireOrderByInput
+  ): [Tire!]!
+  tiresConnection(
+    where: TireWhereInput
+    first: Int
+    skip: Int
+    after: String
+    orderBy: TireOrderByInput
+  ): TireConnection!
+  myTires(
+    where: TireWhereInput
+    first: Int
+    skip: Int
+    after: String
+    orderBy: TireOrderByInput
+  ): [Tire!]!
+}
+
+type Mutation {
+  login(data: LoginUserInput!): AuthPayload!
+  adminLogin(data: LoginUserInput!): AuthPayload!
+  resetPassword(data: ResetPasswordInput!): User!
+  resetComplete(data: ResetCompleteInput): User!
+  activateUser(data: ActivateUserInput): User
+  contact(data: ContactInput): Boolean
+  uploadFile(file: Upload!, id: ID!, type: String!): Boolean
+  deleteFile(id: String): Boolean
+
+  createUser(data: CreateUserInput!): AuthPayload!
+  updateUser(id: ID, data: UpdateUserInput): User!
+  deleteUser(id: ID): User!
+
+  updateMe(data: UpdateUserInput): User!
+  deleteMe: User!
+
+  createAd(data: CreateAdInput!): Ad!
+  updateAd(id: ID!, data: UpdateAdInput): Ad!
+  deleteAd(id: ID!): Ad!
+
+  createRim(data: CreateRimInput!): Rim!
+  updateRim(id: ID!, data: UpdateRimInput): Rim!
+  deleteRim(id: ID!): Rim!
+
+  createTire(data: CreateTireInput!): Tire!
+  updateTire(id: ID!, data: UpdateTireInput): Tire!
+  deleteTire(id: ID!): Tire!
+}
+
+type AuthPayload {
+  token: String!
+  user: User!
+}
+
+input LoginUserInput {
+  email: String!
+  password: String!
+}
+
+input ResetPasswordInput {
+  email: String!
+}
+
+input ResetCompleteInput {
+  token: String!
+  password: String!
+}
+
+input ActivateUserInput {
+  token: String!
+}
+
+input ContactInput {
+  name: String!
+  email: String!
+  message: String!
+}
+
+input CreateUserInput {
+  access: Int!
+  active: Boolean!
+  name: String
+  email: String!
+  password: String!
+  address: String
+  city: String
+  phone: String
+  phone2: String
+}
+
+input UpdateUserInput {
+  access: Int
+  active: Boolean
+  name: String
+  email: String
+  password: String
+  address: String
+  city: String
+  phone: String
+  phone2: String
+  passwordToken: String
+}
+
+input CreateAdInput {
+  userId: ID
+  active: Boolean!
+  highlight: Boolean
+  top: Boolean
+  adType: String
+  type: String!
+  brand: String
+  model: String
+  label: String
+  category: String
+  subcategory: String
+  condition: String
+  year: String
+  yearTo: String
+  price: Int
+  text: String
+  phone: String!
+  phone2: String
+  name: String
+  email: String!
+  city: String!
+  expires: Int
+}
+
+input UpdateAdInput {
+  active: Boolean
+  highlight: Boolean
+  top: Boolean
+  adType: String
+  type: String
+  brand: String
+  model: String
+  label: String
+  category: String
+  subcategory: String
+  condition: String
+  year: String
+  yearTo: String
+  price: Int
+  text: String
+  phone: String
+  phone2: String
+  name: String
+  email: String
+  city: String
+  expires: Int
+}
+
+input CreateRimInput {
+  userId: ID
+  active: Boolean!
+  highlight: Boolean
+  top: Boolean
+  type: String
+  diameter: String
+  width: String
+  holes: String
+  brand: String
+  et: String
+  condition: String
+  price: Int
+  text: String
+  phone: String!
+  phone2: String
+  name: String
+  email: String!
+  city: String!
+  expires: Int
+}
+
+input UpdateRimInput {
+  active: Boolean
+  highlight: Boolean
+  top: Boolean
+  type: String
+  diameter: String
+  width: String
+  holes: String
+  brand: String
+  et: String
+  condition: String
+  price: Int
+  text: String
+  phone: String
+  phone2: String
+  name: String
+  email: String
+  city: String
+  expires: Int
+}
+
+input CreateTireInput {
+  userId: ID
+  active: Boolean!
+  highlight: Boolean
+  top: Boolean
+  type: String
+  diameter: String
+  width: String
+  height: String
+  brand: String
+  condition: String
+  price: Int
+  text: String
+  phone: String!
+  phone2: String
+  name: String
+  email: String!
+  city: String!
+  expires: Int
+}
+
+input UpdateTireInput {
+  active: Boolean
+  highlight: Boolean
+  top: Boolean
+  type: String
+  diameter: String
+  width: String
+  height: String
+  brand: String
+  condition: String
+  price: Int
+  text: String
+  phone: String
+  phone2: String
+  name: String
+  email: String
+  city: String
+  expires: Int
+}
+
+type User {
+  id: ID!
+  ads: [Ad!]!
+  rims: [Rim!]!
+  tires: [Tire!]!
+  access: Int!
+  active: Boolean!
+  name: String
+  email: String!
+  password: String!
+  address: String
+  zip: String
+  city: String
+  phone: String
+  phone2: String
+  passwordToken: String
+  createdAt: String
+  updatedAt: String
+}
+
+type Ad {
+  id: ID!
+  user: User
+  active: Boolean!
+  highlight: Boolean
+  top: Boolean
+  adType: String
+  type: String!
+  brand: String
+  model: String
+  label: String
+  category: String
+  subcategory: String
+  condition: String
+  year: String
+  yearTo: String
+  price: Int
+  text: String
+  phone: String!
+  phone2: String
+  name: String
+  email: String!
+  city: String
+  expires: Int
+  createdAt: String
+  updatedAt: String
+}
+
+type Rim {
+  id: ID!
+  user: User
+  active: Boolean!
+  highlight: Boolean
+  top: Boolean
+  type: String
+  diameter: String
+  width: String
+  holes: String
+  brand: String
+  et: String
+  condition: String
+  price: Int
+  text: String
+  phone: String!
+  phone2: String
+  name: String
+  email: String!
+  city: String
+  expires: Int
+  createdAt: String
+  updatedAt: String
+}
+
+type Tire {
+  id: ID!
+  user: User
+  active: Boolean!
+  highlight: Boolean
+  top: Boolean
+  type: String
+  diameter: String
+  width: String
+  height: String
+  brand: String
+  condition: String
+  price: Int
+  text: String
+  phone: String!
+  phone2: String
+  name: String
+  email: String!
+  city: String
+  expires: Int
+  createdAt: String
+  updatedAt: String
+}

@@ -1,0 +1,40 @@
+
+Todo:
+
+cd prisma => prisma deploy -e ../config/dev.env
+cd .. => npm run get-schema
+
+Your service is protected with a secret, to prevent malicious access. 
+This applies to GraphQL operations, as well as sending an introspection query (which happens when opening the URL in the Playground).
+
+The secret can be found in prisma.yml, it is actually one string that is a comma separated list of secrets, to allow for secret rotation without downtime.
+
+You can generate a token that is signed with a secret using the 'prisma token' command.
+
+Then, set your query headers to this:
+
+{
+  "Authorization": "Bearer <token>"
+}
+
+password: g19h1kLWo2
+
+--module app
+
+lsof -i tcp:4000
+kill -9 5874
+
+uploadFile(file: Upload!, id: String!, index: Int!, type: String!): FilePayload!
+
+type FilePayload {
+  publicId: String
+  format: String
+  url: String
+  status: Boolean
+}
+
+PRISMA_ENDPOINT=https://matan-carparts-prod-688494c663.herokuapp.com/matan-carparts-production/prod
+PRISMA_SECRET=YGG184scmrspRn6JQ1CU5aRrZx1AHbkl
+JWT_SECRET=S3eqB0IudC3bY
+
+//, '-i', '/c wsl'

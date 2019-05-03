@@ -1,0 +1,103 @@
+type User {
+  id: ID! @unique
+  ads: [Ad!]! @relation(name: "AdToUser", onDelete: CASCADE)
+  rims: [Rim!]! @relation(name: "RimToUser", onDelete: CASCADE)
+  tires: [Tire!]! @relation(name: "TireToUser", onDelete: CASCADE)
+  access: Int!
+  active: Boolean!
+  name: String
+  email: String! @unique
+  password: String!
+  address: String
+  city: String
+  phone: String
+  phone2: String
+  passwordToken: String
+  createdAt: DateTime!
+  updatedAt: DateTime!
+}
+
+type Ad {
+  id: ID! @unique
+  user: User @relation(name: "AdToUser", onDelete: SET_NULL)
+  active: Boolean!
+  highlight: Boolean
+  top: Boolean
+  adType: String
+  type: String!
+  brand: String
+  model: String
+  label: String
+  category: String
+  subcategory: String
+  condition: String
+  year: String
+  yearTo: String
+  price: Int
+  text: String
+  phone: String!
+  phone2: String
+  name: String
+  email: String!
+  city: String
+  expires: Int
+  createdAt: DateTime!
+  updatedAt: DateTime!
+}
+
+type Rim {
+  id: ID! @unique
+  user: User @relation(name: "RimToUser", onDelete: SET_NULL)
+  active: Boolean!
+  highlight: Boolean
+  top: Boolean
+  type: String
+  diameter: String
+  width: String
+  holes: String
+  brand: String
+  et: String
+  condition: String
+  price: Int
+  text: String
+  phone: String!
+  phone2: String
+  name: String
+  email: String!
+  city: String
+  expires: Int
+  createdAt: DateTime!
+  updatedAt: DateTime!
+}
+
+type Tire {
+  id: ID! @unique
+  user: User @relation(name: "TireToUser", onDelete: SET_NULL)
+  active: Boolean!
+  highlight: Boolean
+  top: Boolean
+  type: String
+  diameter: String
+  width: String
+  height: String
+  brand: String
+  condition: String
+  price: Int
+  text: String
+  phone: String!
+  phone2: String
+  name: String
+  email: String!
+  city: String
+  expires: Int
+  createdAt: DateTime!
+  updatedAt: DateTime!
+}
+
+type Highlight {
+  id: ID! @unique
+  messageId: String
+  serviceId: String
+  adId: String
+  adType: String
+}
