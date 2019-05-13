@@ -6,8 +6,8 @@ const sendMail = (recipient, token) => {
         port: 587,
         secure: false,
         auth: {
-            user: 'apikey',
-            pass: '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'
+            user: '',
+            pass: ''
         }
     })
 
@@ -297,8 +297,8 @@ const sendRegistrationMail = (recipient, token) => {
         port: 587,
         secure: false,
         auth: {
-            user: 'apikey',
-            pass: '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'
+            user: '',
+            pass: ''
         }
     })
 
@@ -584,8 +584,8 @@ const sendContactMail = (name, email, message) => {
         port: 587,
         secure: false,
         auth: {
-            user: 'apikey',
-            pass: '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'
+            user: '',
+            pass: ''
         }
     })
 
